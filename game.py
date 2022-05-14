@@ -83,8 +83,26 @@ class Spot:
         if self.col>0 and not grid[self.row][self.col-1].is_barrier():
             self.neighbors.append(grid[self.row][self.col-1])
 
+        if (self.col > 0 and self.row >0)  and not grid[self.row-1][self.col - 1].is_barrier():
+            self.neighbors.append(grid[self.row-1][self.col - 1])
+             # upper left
+
+        if (self.row < self.total_rows-1 and self.col >0)  and not grid[self.row+1][self.col - 1].is_barrier():
+            self.neighbors.append(grid[self.row+1][self.col - 1])
+			
+             # upper right
+
+        if (self.col < self.total_rows-1 and self.row >0)  and not grid[self.row-1][self.col + 1].is_barrier(): # lower left
+            self.neighbors.append(grid[self.row-1][self.col + 1])
+
+        if (self.col < self.total_rows-1 and self.row <self.total_rows-1)  and not grid[self.row+1][self.col + 1].is_barrier(): # lower right
+            self.neighbors.append(grid[self.row+1][self.col + 1])	
+
     def __lt__(self,other):
         return False
+
+
+#defing heuristic function
 
 def h(p1,p2):
     x1,y1=p1
